@@ -67,6 +67,38 @@ main.table {
   transition: .2s;
 }
 
+.navigation-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+.nav {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  margin: 0 5px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 30px;
+  padding: 10px;
+  transition: background-color 0.3s ease;
+}
+.nav-link.active {
+  color: #595959;
+}
+.nav-link:hover {
+  background-color: transparent;
+  color: grey;
+}
+
 .table__header .input-group:hover {
   width: 45%;
   background-color: #fff8;
@@ -120,10 +152,11 @@ table {
 }
 
 td img {
-  width: 150px;
-  height: 150px;
-  cursor: pointer;
-  border-radius: 20%;
+  width: 36px;
+  height: 36px;
+  margin-right: .5rem;
+  border-radius: 50%;
+
   vertical-align: middle;
 }
 

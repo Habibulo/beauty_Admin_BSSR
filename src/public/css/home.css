@@ -73,7 +73,7 @@ body.colorful-mode {
 }
 
 body.dark-mode {
-  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background:#fff4;
   color: rgb(34, 34, 34);
 }
 

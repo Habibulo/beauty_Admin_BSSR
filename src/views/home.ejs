@@ -1,3 +1,4 @@
+<%- include('includes/header') %>
 <link rel="stylesheet" type="text/css" href="../public/css/home.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
 <body data-theme="dark">
@@ -7,12 +8,14 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/admin">Home</a>
                 </li>
+                <% if(!member) { %>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/signup">Signup</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/login">Login</a>
                 </li>
+                <% } else { %>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/product/all">Menu</a>
                 </li>
@@ -22,8 +25,9 @@
                 <li class="nav-item" onclick="return confirm('Do you want to logout?')">
                     <a class="nav-link" href="/admin/logout">Logout</a>
                 </li>
+                <% } %>
             </ul>
-        </div>
+      </div>
 
     <!-- anime.js` -->
   <div class="anim">
@@ -87,40 +91,6 @@
     </g>
   </svg>
 </div> 
-<button class="dark-mode-toggle" onclick="toggleDarkMode()">Rainbow</button>
+<button class="dark-mode-toggle" onclick="toggleDarkMode()">White</button>
   <script type="text/javascript" src="../public/js/home.js"></script>
 </body>
-
-<!-- <%- include('../views/includes/footer') %> -->
-
-
-    <!-- <div class="home-container">
-    <div class="navigation-menu">
-      <ul class="nav justify-content-center">
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link active" href="/admin">Home</a>
-        </li>
-        <% if(!member) { %>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/signup">Signup</a>
-        </li>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/login">Login</a>
-        </li>
-        <% } else { %>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/product/all">Menu</a>
-        </li>
-        <li class="nav-item" style="cursor: pointer">
-          <a class="nav-link" href="/admin/user/all">Users</a>
-        </li>
-        <li
-          class="nav-item"
-          style="cursor: pointer"
-          onclick="return confirm('Do you want to logout?')"
-        >
-          <a class="nav-link" href="/admin/logout">Logout</a>
-        </li>
-        <% } %>
-      </ul>
-    </div> -->
