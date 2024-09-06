@@ -250,12 +250,38 @@ thead th.active,tbody td.active {
 }
 
 .export__file .export__file-btn {
+  cursor: pointer;
   display: inline-block;
   width: 2rem;
   height: 2rem;
   background: #fff6 url(../img/userImages/export.png) center / 80% no-repeat;
   border-radius: 50%;
   transition: .2s ease-in-out;
+}
+.export__file-options {
+  display: none;
+  position: absolute;
+  top: 40px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+}
+.export__file-options label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px 0;
+}
+
+.export__file-options label img {
+  margin-left: 10px;
+  width: 20px;
+  height: 20px;
+}
+
+#export-file:checked + .export__file-options {
+  display: block;
 }
 
 .export__file .export__file-btn:hover { 
@@ -320,3 +346,115 @@ thead th.active,tbody td.active {
   width: 2rem;
   height: auto;
 }
+
+
+/** FORM CSS **/
+
+/* for button */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+h1 {
+  margin: 0;
+}
+.create-btn:hover { 
+  background-color: #fff;
+  transform: scale(1.15);
+  cursor: pointer;
+}
+.create-btn {
+  background-color: #4caf50; /* Green color for button */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.create-btn:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+
+
+/* form */
+.table__body {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e3a8a;
+  padding: 15px;
+  color: white;
+}
+
+.custom-form {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.custom-input {
+  margin-bottom: 15px;
+}
+
+.custom-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-input input,
+.custom-input select,
+.custom-input textarea {
+  width: 100%;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.custom-images {
+  margin-bottom: 20px;
+}
+
+.custom-media-frame {
+  display: flex;
+  gap: 10px;
+}
+
+.custom-upload-img-box img {
+  width: 100px;
+  height: 100px;
+}
+
+.custom-operation-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cancel-btn, .create-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.create-btn {
+  background-color: #007bff;
+  color: white;
+}
+
+
