@@ -1,32 +1,32 @@
-var $pathEls = $("path");
-$pathEls.each(function (i, pathEl) {
-	var offset = anime.setDashoffset(pathEl);
-	$(pathEl).attr("stroke-dashoffset", offset);
-	anime({
-		targets: pathEl,
-		strokeDashoffset: [offset, 0],
-		duration: anime.random(1000, 3000),
-		delay: anime.random(0, 2000),
-		loop: true,
-		direction: "alternate",
-		easing: "easeInOutSine",
-		autoplay: true,
-	});
-});
+// var $pathEls = $("path");
+// $pathEls.each(function (i, pathEl) {
+// 	var offset = anime.setDashoffset(pathEl);
+// 	$(pathEl).attr("stroke-dashoffset", offset);
+// 	anime({
+// 		targets: pathEl,
+// 		strokeDashoffset: [offset, 0],
+// 		duration: anime.random(1000, 3000),
+// 		delay: anime.random(0, 2000),
+// 		loop: true,
+// 		direction: "alternate",
+// 		easing: "easeInOutSine",
+// 		autoplay: true,
+// 	});
+// });
 
-function toggleDarkMode() {
-	$("body").toggleClass("dark-mode colorful-mode");
-	var $button = $(".dark-mode-toggle");
-	if ($("body").hasClass("colorful-mode")) {
-		$button.text("Dark");
-	} else {
-		$button.text("White");
-	}
-}
+// function toggleDarkMode() {
+// 	$("body").toggleClass("dark-mode colorful-mode");
+// 	var $button = $(".dark-mode-toggle");
+// 	if ($("body").hasClass("colorful-mode")) {
+// 		$button.text("Dark");
+// 	} else {
+// 		$button.text("White");
+// 	}
+// }
 
 
-/**
-	JAVASCRIPT FOR TEST WITHOUT JQUERY
+
+	// JAVASCRIPT FOR TEST WITHOUT JQUERY
 	
 var pathEls = document.querySelectorAll("path");
 for (var i = 0; i < pathEls.length; i++) {
@@ -54,4 +54,3 @@ function toggleDarkMode() {
       button.textContent = "White";
   }
 }
-	**/

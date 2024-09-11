@@ -51,7 +51,7 @@
          
          <!-- Form inputs (match table structure) -->
          <div class="custom-input">
-           <label for="productName">Product Name</label>
+           <label for="productName">Product</label>
            <input type="text" name="productName" placeholder="Name" id="productName" />
          </div>
      
@@ -70,24 +70,36 @@
      
          <div class="custom-row">
            <div class="custom-input">
-             <label for="productCollection">Product Type</label>
+             <label for="productCollection">Category</label>
              <select name="productCollection" id="productCollection">
-               <option value="DISH" selected>Dish</option>
-               <option value="SALAD">Salad</option>
-               <option value="DESSERT">Dessert</option>
-               <option value="DRINK">Drink</option>
+               <option value="SKINCARE">Skincare Products</option>
+               <option value="FRAGRANCE" selected>Fragrance</option>
+               <option value="HAIRCARE">Hair Care Products</option>
+               <option value="BODYCARE">Body Care Products</option>
+               <option value="NAILCARE">Nail Care</option>
+               <option value="GROOMING">Men's Grooming</option>
                <option value="OTHER">Other</option>
-             </select>
+              </select>
            </div>
            <div class="custom-input">
-             <label for="productSize">Dish Size</label>
+             <label for="productSize">Types</label>
              <select name="productSize" id="productSize">
                <option value="SMALL">Small</option>
                <option value="NORMAL" selected>Normal</option>
                <option value="LARGE">Large</option>
-               <option value="SET">Set</option>
+               <option value="AQUA">Aqua-Based</option>
              </select>
            </div>
+           <div class="custom-input" id="product-volume" >
+            <label for="productVolume"> Product Volume</label>
+              <select class="product-volume" name="productVolume">
+                <option value="0.5">0,5ml</option>
+                <option value="1" selected>100ml</option>
+                <option value="1.2">250ml</option>
+                <option value="1.5">350ml</option>
+                <option value="2">500ml</option>
+              </select>
+            </div>
          </div>
      
          <div class="custom-input">
@@ -106,6 +118,15 @@
                <img src="/img/upload.svg" id="image-section-2" />
                <input type="file" name="productImages" onchange="previewFileHendler(this, 2)" />
              </div>
+             <div class="custom-upload-img-box">
+              <img src="/img/upload.svg" id="image-section-2" />
+              <input type="file" name="productImages" onchange="previewFileHendler(this, 2)" />
+            </div>
+            <div class="custom-upload-img-box">
+              <img src="/img/upload.svg" id="image-section-2" />
+              <input type="file" name="productImages" onchange="previewFileHendler(this, 2)" />
+            </div>
+            
              <!-- Add more image uploaders as needed -->
            </div>
          </div>
@@ -128,7 +149,7 @@
              <th> Image <span class="icon-arrow">&UpArrow;</span></th>
              <th> Product <span class="icon-arrow">&UpArrow;</span></th>
              <th> Category <span class="icon-arrow">&UpArrow;</span></th>
-             <th> Size <span class="icon-arrow">&UpArrow;</span></th>
+             <th> Left Count <span class="icon-arrow">&UpArrow;</span></th>
              <th> Status <span class="icon-arrow">&UpArrow;</span></th>
              <th> Price <span class="icon-arrow">&UpArrow;</span></th>
            </tr>

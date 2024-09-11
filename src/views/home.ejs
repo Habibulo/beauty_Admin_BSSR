@@ -1,4 +1,4 @@
-<%- include('includes/header') %>
+<!-- <%- include('includes/header') %> -->
 <link rel="stylesheet" type="text/css" href="../public/css/home.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.js"></script>
 <body data-theme="dark">
@@ -8,14 +8,14 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="/admin">Home</a>
                 </li>
-                <% if(!member) { %>
+                <!-- <% if(!member) { %> -->
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/signup">Signup</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/login">Login</a>
                 </li>
-                <% } else { %>
+                <!-- <% } else { %> -->
                 <li class="nav-item">
                     <a class="nav-link" href="/admin/product/all">Menu</a>
                 </li>
@@ -25,7 +25,7 @@
                 <li class="nav-item" onclick="return confirm('Do you want to logout?')">
                     <a class="nav-link" href="/admin/logout">Logout</a>
                 </li>
-                <% } %>
+                <!-- <% } %> -->
             </ul>
       </div>
 
