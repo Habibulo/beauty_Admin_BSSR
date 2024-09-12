@@ -241,9 +241,23 @@ const downloadFile = function (data, fileType, fileName = "") {
   a.click();
   a.remove();
 };
+// previewFileHandle
+
+function previewFileHendler(input, index) {
+  const file = input.files[0];
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      const imgElement = document.querySelectorAll("#image-section")[index - 1];
+      imgElement.src = e.target.result; // Set the new image source
+    };
+
+    reader.readAsDataURL(file); // Convert the file to a data URL
+  }
+}
 
 /** FORM INPUT **/
-
 document.addEventListener("DOMContentLoaded", function () {
   const createProductBtn = document.getElementById("create-product-btn");
   const cancelBtn = document.getElementById("cancel-btn");
@@ -269,24 +283,36 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
 
     // Get form values
+    const productBrand = document.getElementById("productBrand").value;
     const productName = document.getElementById("productName").value;
     const productPrice = document.getElementById("productPrice").value;
-    const productLeftCount = document.getElementById("productLeftCount").value;
-    const productCollection =
-      document.getElementById("productCollection").value;
+    const productCollection = document.getElementById("productCollection").value;
     const productSize = document.getElementById("productSize").value;
     const productDesc = document.getElementById("productDesc").value;
+    const productLeftCount = document.getElementById("productLeftCount").value;
+
+    // Update the image input to the correct file input element
+    const productImageInput = document.querySelector('input[type="file"]');
+    const productImageFile = productImageInput.files[0];
+
+    // Check if a file is uploaded
+    let imageUrl = "../public/img/userImages/Zinzu Chan Lee.jpg"; // Default image path
+    if (productImageFile) {
+      imageUrl = URL.createObjectURL(productImageFile); // Use uploaded image if available
+    }
 
     // Create a new row in the product table
     const newRow = document.createElement("tr");
     newRow.innerHTML = `
+    <tr>
       <td>${productTableBody.rows.length + 1}</td>
-      <td><img src="../public/img/upload.svg" alt="Product Image" /></td>
+      <td><img src="${imageUrl}" alt="Product Image" width="50" height="50"/></td>
       <td>${productName}</td>
       <td>${productCollection}</td>
       <td>${productSize}</td>
       <td><p class="status">Active</p></td>
-      <td>$${productPrice}</td>
+      <td><strong>${productPrice}</strong></td>
+    </tr>
     `;
 
     // Append the new row to the table
@@ -300,6 +326,7 @@ document.addEventListener("DOMContentLoaded", function () {
     productList.style.display = "block";
   });
 });
+
 const form = document.querySelector("form.custom-form");
 const toggleBtn = document.querySelector(".create-btn");
 const cancelBtn = document.querySelector(".cancel-btn");
@@ -329,11 +356,21 @@ form.addEventListener("submit", function (event) {
   const productType = document.getElementById("productCollection").value;
   const productSize = document.getElementById("productSize").value;
 
+  // Update the image input to the correct file input element
+  const productImageInput = document.querySelector('input[type="file"]');
+  const productImageFile = productImageInput.files[0];
+
+  // Check if a file is uploaded
+  let imageUrl = "../public/img/userImages/Zinzu Chan Lee.jpg"; // Default image path
+  if (productImageFile) {
+    imageUrl = URL.createObjectURL(productImageFile); // Use uploaded image if available
+  }
+
   // Generate a new row with input data
   const newRow = `
     <tr>
-      <td> 1 </td>  <!-- Increment the number dynamically as needed -->
-      <td> <img src="../public/img/userImages/Zinzu Chan Lee.jpg" alt=""></td>  <!-- Placeholder image, replace with actual uploaded image if available -->
+      <td> </td>  <!-- Increment the number dynamically as needed -->
+      <td> <img src="${imageUrl}" alt="Product Image" width="50" height="50"/></td>
       <td> ${productName} </td>
       <td> ${productType} </td>
       <td> ${productSize} </td>
@@ -354,10 +391,7 @@ form.addEventListener("submit", function (event) {
   form.style.display = "none";
 });
 
-
-
-/** Might be DELETED**/
-
+/** Might be DELETED **/
 
 function sortTable(column, sort_asc) {
   // Get the table body element
@@ -387,6 +421,7 @@ function sortTable(column, sort_asc) {
   // Append the sorted rows back to the tbody
   sortedRows.forEach((row) => tbody.appendChild(row));
 }
+
 function updateTableRows() {
   table_rows = document.querySelectorAll("tbody tr");
 }

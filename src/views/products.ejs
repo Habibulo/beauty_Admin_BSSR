@@ -1,97 +1,108 @@
- <!DOCTYPE html>
- <html lang="en">
- 
- <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>Convert | Export html Table to CSV & EXCEL File</title>
-   <link rel="stylesheet" type="text/css" href="../public/css/products.css">
- </head>
- 
- <body>
-   <main class="table" id="customers_table">
-     <section class="table__header">
-       <h1>Products List</h1>
-       <div class="input-group">
-         <input type="search" placeholder="Search Data...">
-         <img src="../public/img/userImages/search.png" alt="">
-       </div>
-       <div class="export__file">
-         <label for="export-file" class="export__file-btn" title="Export File">
-           <img src="../public/img/button.png" alt="">
-         </label>
-         <input type="checkbox" id="export-file" hidden>
-         <div class="export__file-options">
-           <label>Export As &nbsp; &#10140;</label>
-           <label for="export-file" id="toPDF">PDF <img src="../public/img/userImages/pdf.png" alt=""></label>
-           <label for="export-file" id="toJSON">JSON <img src="../public/img/userImages/json.png" alt=""></label>
-           <label for="export-file" id="toCSV">CSV <img src="../public/img/userImages/csv.png" alt=""></label>
-           <label for="export-file" id="toEXCEL">EXCEL <img src="../public/img/userImages/excel.png" alt=""></label>
-         </div>
-       </div>      
-     </section>
- 
-     <!-- Toggle form visibility -->
-     <section class="table__body">
-       <div class="header">
-         <h1>NEW PRODUCT DETAIL</h1>
-         <button class="create-btn" id="toggleFormBtn">Create New Product</button>
-       </div>
-       
-       <!-- Form initially hidden -->
-       <form 
-         id="productForm"
-         style="display: none;"
-         onsubmit="return validateForm()"
-         action="/admin/product/create"
-         method="POST"
-         class="custom-form"
-         enctype="multipart/form-data">
-         
-         <!-- Form inputs (match table structure) -->
-         <div class="custom-input">
-           <label for="productName">Product</label>
-           <input type="text" name="productName" placeholder="Name" id="productName" />
-         </div>
-     
-         <input type="hidden" name="productStatus" value="PAUSE" />
-     
-         <div class="custom-row">
-           <div class="custom-input">
-             <label for="productPrice">Product Price</label>
-             <input type="number" name="productPrice" placeholder="Price" id="productPrice" />
-           </div>
-           <div class="custom-input">
-             <label for="productLeftCount">Product Left Counts</label>
-             <input type="number" name="productLeftCount" placeholder="Counts" id="productLeftCount" />
-           </div>
-         </div>
-     
-         <div class="custom-row">
-           <div class="custom-input">
-             <label for="productCollection">Category</label>
-             <select name="productCollection" id="productCollection">
-               <option value="SKINCARE">Skincare Products</option>
-               <option value="FRAGRANCE" selected>Fragrance</option>
-               <option value="HAIRCARE">Hair Care Products</option>
-               <option value="BODYCARE">Body Care Products</option>
-               <option value="NAILCARE">Nail Care</option>
-               <option value="GROOMING">Men's Grooming</option>
-               <option value="OTHER">Other</option>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Convert | Export html Table to CSV & EXCEL File</title>
+  <link rel="stylesheet" type="text/css" href="../public/css/products.css">
+</head>
+
+<body>
+  <main class="table" id="customers_table">
+      <div class="table">
+        <div class="navigation-menu">
+         <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="/admin">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/admin/product/all">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/user/all">Users</a>
+          </li>
+          <li class="nav-item" onclick="return confirm('Do you want to logout?')">
+            <a class="nav-link" href="/admin/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+      <section class="table__header">
+        <h1>Products List</h1>
+        <div class="input-group">
+          <input type="search" placeholder="Search Data...">
+          <img src="../public/img/userImages/search.png" alt="">
+        </div>
+        <div class="export__file">
+          <label for="export-file" class="export__file-btn" title="Export File">
+            <img src="../public/img/button.png" alt="">
+          </label>
+          <input type="checkbox" id="export-file" hidden>
+          <div class="export__file-options">
+            <label>Export As &nbsp; &#10140;</label>
+            <label for="export-file" id="toPDF">PDF <img src="../public/img/userImages/pdf.png" alt=""></label>
+            <label for="export-file" id="toJSON">JSON <img src="../public/img/userImages/json.png" alt=""></label>
+            <label for="export-file" id="toCSV">CSV <img src="../public/img/userImages/csv.png" alt=""></label>
+            <label for="export-file" id="toEXCEL">EXCEL <img src="../public/img/userImages/excel.png" alt=""></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Toggle form visibility -->
+      <section class="table__body">
+        <div class="header">
+          <h1>NEW PRODUCT DETAIL</h1>
+          <button class="create-btn" id="toggleFormBtn">Create New Product</button>
+        </div>
+
+        <!-- Form initially hidden -->
+        <form id="productForm" style="display: none;" onsubmit="return validateForm()" action="/admin/product/create"
+          method="POST" class="custom-form" enctype="multipart/form-data">
+
+          <!-- Form inputs (match table structure) -->
+          <div class="custom-input">
+            <label for="productName">Product</label>
+            <input type="text" name="productName" placeholder="Name" id="productName" />
+          </div>
+
+          <input type="hidden" name="productStatus" value="PAUSE" />
+
+          <div class="custom-row">
+            <div class="custom-input">
+              <label for="productPrice">Product Price</label>
+              <input type="number" name="productPrice" placeholder="Price" id="productPrice" />
+            </div>
+            <div class="custom-input">
+              <label for="productLeftCount">Product Left Counts</label>
+              <input type="number" name="productLeftCount" placeholder="Counts" id="productLeftCount" />
+            </div>
+          </div>
+
+          <div class="custom-row">
+            <div class="custom-input">
+              <label for="productCollection">Category</label>
+              <select name="productCollection" id="productCollection">
+                <option value="SKINCARE">Skincare Products</option>
+                <option value="FRAGRANCE" selected>Fragrance</option>
+                <option value="HAIRCARE">Hair Care Products</option>
+                <option value="BODYCARE">Body Care Products</option>
+                <option value="NAILCARE">Nail Care</option>
+                <option value="GROOMING">Men's Grooming</option>
+                <option value="OTHER">Other</option>
               </select>
-           </div>
-           <div class="custom-input">
-             <label for="productSize">Types</label>
-             <select name="productSize" id="productSize">
-               <option value="SMALL">Small</option>
-               <option value="NORMAL" selected>Normal</option>
-               <option value="LARGE">Large</option>
-               <option value="AQUA">Aqua-Based</option>
-             </select>
-           </div>
-           <div class="custom-input" id="product-volume" >
-            <label for="productVolume"> Product Volume</label>
+            </div>
+            <div class="custom-input">
+              <label for="productSize">Types</label>
+              <select name="productSize" id="productSize">
+                <option value="SMALL">Small</option>
+                <option value="NORMAL" selected>Normal</option>
+                <option value="LARGE">Large</option>
+                <option value="AQUA">Aqua-Based</option>
+              </select>
+            </div>
+            <div class="custom-input" id="product-volume">
+              <label for="productVolume"> Product Volume</label>
               <select class="product-volume" name="productVolume">
                 <option value="0.5">0,5ml</option>
                 <option value="1" selected>100ml</option>
@@ -100,94 +111,90 @@
                 <option value="2">500ml</option>
               </select>
             </div>
-         </div>
-     
-         <div class="custom-input">
-           <label for="productDesc">Product Description</label>
-           <textarea name="productDesc" id="productDesc" placeholder="Description"></textarea>
-         </div>
-     
-         <div class="custom-images">
-           <label>Product Images</label>
-           <div class="custom-media-frame">
-             <div class="custom-upload-img-box">
-               <img src="/img/upload.svg" id="image-section-1" />
-               <input type="file" name="productImages" onchange="previewFileHendler(this, 1)" />
-             </div>
-             <div class="custom-upload-img-box">
-               <img src="/img/upload.svg" id="image-section-2" />
-               <input type="file" name="productImages" onchange="previewFileHendler(this, 2)" />
-             </div>
-             <div class="custom-upload-img-box">
-              <img src="/img/upload.svg" id="image-section-2" />
-              <input type="file" name="productImages" onchange="previewFileHendler(this, 2)" />
+          </div>
+
+          <div class="custom-input">
+            <label for="productDesc">Product Description</label>
+            <textarea name="productDesc" id="productDesc" placeholder="Description"></textarea>
+          </div>
+
+          <div class="custom-images">
+            <label>Product Images</label>
+            <div class="custom-media-frame">
+              <div class="custom-upload-img-box">
+                <img src="../public/img/image.svg" id="image-section" />
+                <input type="file" name="productImages" onchange="previewFileHendler(this, 1)" />
+              </div>
+              <div class="custom-upload-img-box">
+                <img src="../public/img/image.svg" id="image-section" />
+                <input type="file" name="productImages" onchange="previewFileHendler(this, 2)" />
+              </div>
+              <div class="custom-upload-img-box">
+                <img src="../public/img/image.svg" id="image-section" />
+                <input type="file" name="productImages" onchange="previewFileHendler(this, 3)" />
+              </div>
+              <div class="custom-upload-img-box">
+                <img src="../public/img/image.svg" id="image-section" />
+                <input type="file" name="productImages" onchange="previewFileHendler(this, 4)" />
+              </div>
+
+              <!-- Add more image uploaders as needed -->
             </div>
-            <div class="custom-upload-img-box">
-              <img src="/img/upload.svg" id="image-section-2" />
-              <input type="file" name="productImages" onchange="previewFileHendler(this, 2)" />
-            </div>
-            
-             <!-- Add more image uploaders as needed -->
-           </div>
-         </div>
-     
-         <input type="hidden" name="restaurantId" value="123" />
-     
-         <div class="custom-operation-buttons">
-           <button type="button" class="cancel-btn">Cancel</button>
-           <button type="submit" class="create-btn">Create</button>
-         </div>
-       </form>
-     </section>
- 
-     <!-- Do not change this section -->
-     <section class="table__body">
-       <table>
-         <thead>
-           <tr>
-             <th> No <span class="icon-arrow">&UpArrow;</span></th>
-             <th> Image <span class="icon-arrow">&UpArrow;</span></th>
-             <th> Product <span class="icon-arrow">&UpArrow;</span></th>
-             <th> Category <span class="icon-arrow">&UpArrow;</span></th>
-             <th> Left Count <span class="icon-arrow">&UpArrow;</span></th>
-             <th> Status <span class="icon-arrow">&UpArrow;</span></th>
-             <th> Price <span class="icon-arrow">&UpArrow;</span></th>
-           </tr>
-         </thead>
-         <tbody>
-           <tr>
-             <td> 1 </td>
-             <td> <img src="../public/img/userImages/Zinzu Chan Lee.jpg" alt=""></td>
-             <td> Zenhusia</td>
-             <td> Seoul </td>
-             <td> 17 Dec, 2022 </td>
-             <td>
-               <p class="status delivered">Delivered</p>
-             </td>
-             <td> <strong> $128.90 </strong></td>
-           </tr>
-         </tbody>
-         <tbody>
-          <tr>
-            <td> 2 </td>
-            <td> <img src="../public/img/userImages/Zinzu Chan Lee.jpg" alt=""></td>
-            <td> Alice</td>
-            <td> Tokyo </td>
-            <td> 19 Dec, 2018 </td>
-            <td>
-              <p class="status delivered">Delivered</p>
-            </td>
-            <td> <strong> $148.90 </strong></td>
-          </tr>
-        </tbody>
-        
-       </table>
-     </section>
-   </main>
-   <!-- JavaScript for toggling the form -->
+          </div>
+
+          <input type="hidden" name="restaurantId" value="123" />
+
+          <div class="custom-operation-buttons">
+            <button type="button" class="cancel-btn">Cancel</button>
+            <button type="submit" class="create-btn">Create</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Do not change this section -->
+      <section class="table__body">
+        <table>
+          <thead>
+            <tr>
+              <th> No <span class="icon-arrow">&UpArrow;</span></th>
+              <th> Image <span class="icon-arrow">&UpArrow;</span></th>
+              <th> Product <span class="icon-arrow">&UpArrow;</span></th>
+              <th> Category <span class="icon-arrow">&UpArrow;</span></th>
+              <th> Type <span class="icon-arrow">&UpArrow;</span></th>
+              <th> Status <span class="icon-arrow">&UpArrow;</span></th>
+              <th> Price <span class="icon-arrow">&UpArrow;</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> 1 </td>
+              <td> <img src="../public/img/userImages/Zinzu Chan Lee.jpg" alt=""></td>
+              <td> Lotion</td>
+              <td> Bodycare </td>
+              <td> Large </td>
+              <td>
+                <p class="status delivered">Active</p>
+              </td>
+              <td> <strong> $128.90 </strong></td>
+            </tr>
+            <tr>
+              <td> 2 </td>
+              <td> <img src="../public/img/userImages/Zinzu Chan Lee.jpg" alt=""></td>
+              <td> Lipstick </td>
+              <td> Skincare </td>
+              <td> Small </td>
+              <td>
+                <p class="status delivered">Active</p>
+              </td>
+              <td> <strong> $148.90 </strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+  </main>
+  <!-- JavaScript for toggling the form -->
   <script src="../public/js/products.js"></script>
- 
- </body>
- 
- </html>
- 
+
+</body>
+
+</html>
