@@ -4,7 +4,7 @@ import ProductService from "../models/Product.service";
 import { AdminRequest, ExtendedRequest } from "../libs/types/member";
 import { T } from "../libs/types/comments";
 import { ProductInput, ProductInquiry } from "../libs/types/product";
-import { ProductCollection } from "../libs/enums/product.enum";
+import { ProductCategory } from "../libs/enums/product.enum";
 import { Types } from "mongoose";
 const productService = new ProductService();
 
@@ -15,7 +15,7 @@ const productController: T = {};
 productController.getProducts = async (req: Request, res: Response) => {
   try {
     console.log("getProducts");
-    const { page, limit, order, productCollection, search } = req.query;
+    const { page, limit, order, productCategory, search } = req.query;
     const inquiry: ProductInquiry = {
       order: String(order),
       page: Number(page),
@@ -23,8 +23,8 @@ productController.getProducts = async (req: Request, res: Response) => {
     };
     console.log("inquiry shakli:", inquiry);
     
-    if (productCollection)
-      inquiry.productCollection = productCollection as ProductCollection;
+    if (productCategory)
+      inquiry.productCategory = productCategory as ProductCategory;
     if (search) inquiry.search = String(search);
     const result = await productService.getProducts(inquiry);
     
@@ -42,9 +42,8 @@ productController.getProduct = async (
   try {
     console.log("getProduct");
     const { id } = req.params;
-    console.log("request malumotlar", req.params);
+    // console.log("request malumotlar", req.params);
     const memberId = req.member?._id ?? null;
-    console.log("user ID: ", memberId);
 
     const result = await productService.getProduct(memberId, id);
     res.status(HttpCode.OK).json(result);

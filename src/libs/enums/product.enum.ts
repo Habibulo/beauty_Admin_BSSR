@@ -2,7 +2,17 @@ export enum ProductSize {
 	SMALL = "SMALL",
 	NORMAL = "NORMAL",
 	LARGE = "LARGE",
-	SET = "SET",
+	AQUA = "AQUA",
+}
+
+export enum ProductCategory {
+	SKINCARE = "SKINCARE",
+	FRAGRANCE = "FRAGRANCE",
+	HAIRCARE = "HAIRCARE",
+	BODYCARE = "BODYCARE",
+	NAILCARE = "NAILCARE",
+	GROOMING = "GROOMING",
+	OTHER = "OTHER",
 }
 
 export enum ProductVolume {
@@ -14,15 +24,15 @@ export enum ProductVolume {
 }
 
 export enum ProductStatus {
-	PAUSE = "PAUSE",
-	PROCESS = "PROCESS",
-	DELETE = "DELETE",
+	ACTIVE = "ACTIVE",
+	PENDING = "PENDING",
+	OUTOFSTOCK = "OUTOFSTOCK",
 }
 
-export enum ProductCollection {
-	DISH = "DISH",
-	SALAD = "SALAD",
-	DESSERT = "DESSERT",
-	DRINK = "DRINK",
-	OTHERS = "OTHER",
-}
+// export enum ProductCollection {
+// 	DISH = "DISH",
+// 	SALAD = "SALAD",
+// 	DESSERT = "DESSERT",
+// 	DRINK = "DRINK",
+// 	OTHERS = "OTHER",
+// }

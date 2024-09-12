@@ -24,9 +24,9 @@ class ProductService {
   /* SPA */
 
   public async getProducts(inquiry: ProductInquiry): Promise<Product[]> {
-    const match: T = { productStatus: ProductStatus.PROCESS };
-    if (inquiry.productCollection)
-      match.productCollection = inquiry.productCollection;
+    const match: T = { productStatus: ProductStatus.ACTIVE };
+    if (inquiry.productCategory)
+      match.productCategory = inquiry.productCategory;
     if (inquiry.search) {
       match.productName = { $regex: new RegExp(inquiry.search, "i") };
     }
@@ -59,7 +59,7 @@ class ProductService {
     let result = await this.productModel
       .findById({
         _id: productId,
-        productStatus: ProductStatus.PROCESS,
+        productStatus: ProductStatus.ACTIVE,
       })
       .exec();
     if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);

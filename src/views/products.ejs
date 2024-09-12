@@ -11,8 +11,8 @@
 
 <body>
   <main class="table" id="customers_table">
-      <div class="table">
-        <div class="navigation-menu">
+      <div class="table_header">
+        <div class="navigation-menu-header">
          <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link" href="/admin">Home</a>
@@ -23,7 +23,7 @@
           <li class="nav-item">
             <a class="nav-link" href="/admin/user/all">Users</a>
           </li>
-          <li class="nav-item" onclick="return confirm('Do you want to logout?')">
+          <li class="nav-item" style="cursor: pointer" onclick="return confirm('Do you want to logout?')">
             <a class="nav-link" href="/admin/logout">Logout</a>
           </li>
         </ul>
@@ -61,13 +61,12 @@
           method="POST" class="custom-form" enctype="multipart/form-data">
 
           <!-- Form inputs (match table structure) -->
+          <!-- PRODUCT NAME & STATUS -->
           <div class="custom-input">
             <label for="productName">Product</label>
             <input type="text" name="productName" placeholder="Name" id="productName" />
           </div>
-
-          <input type="hidden" name="productStatus" value="PAUSE" />
-
+            <input type="hidden" name="productStatus" value="ACTIVE" id="productStatus"/>
           <div class="custom-row">
             <div class="custom-input">
               <label for="productPrice">Product Price</label>
@@ -78,11 +77,11 @@
               <input type="number" name="productLeftCount" placeholder="Counts" id="productLeftCount" />
             </div>
           </div>
-
+     <!-- PRODUCT CATEGORY & SIZE-->
           <div class="custom-row">
             <div class="custom-input">
-              <label for="productCollection">Category</label>
-              <select name="productCollection" id="productCollection">
+              <label for="productCategory">Category</label>
+              <select name="productCategory" id="productCategory">
                 <option value="SKINCARE">Skincare Products</option>
                 <option value="FRAGRANCE" selected>Fragrance</option>
                 <option value="HAIRCARE">Hair Care Products</option>
@@ -115,27 +114,59 @@
 
           <div class="custom-input">
             <label for="productDesc">Product Description</label>
-            <textarea name="productDesc" id="productDesc" placeholder="Description"></textarea>
+            <textarea name="productDesc" id="productDesc" placeholder="Product Description"></textarea>
           </div>
-
+        <!-- PRODUCT IMAGE UPLOAD SECTION -->
           <div class="custom-images">
             <label>Product Images</label>
             <div class="custom-media-frame">
               <div class="custom-upload-img-box">
-                <img src="../public/img/image.svg" id="image-section" />
-                <input type="file" name="productImages" onchange="previewFileHendler(this, 1)" />
+                <img 
+                  src="../public/img/image.svg" 
+                  id="image-section-1" 
+                />
+                <input 
+                  type="file" 
+                  id="file" 
+                  name="productImages" 
+                  onchange="previewFileHendler(this, 1)" 
+                />
               </div>
               <div class="custom-upload-img-box">
-                <img src="../public/img/image.svg" id="image-section" />
-                <input type="file" name="productImages" onchange="previewFileHendler(this, 2)" />
+                <img 
+                  src="../public/img/image.svg" 
+                  id="image-section-2" 
+                />
+                <input 
+                  type="file" 
+                  id="file" 
+                  name="productImages" 
+                  onchange="previewFileHendler(this, 2)" 
+                />
               </div>
               <div class="custom-upload-img-box">
-                <img src="../public/img/image.svg" id="image-section" />
-                <input type="file" name="productImages" onchange="previewFileHendler(this, 3)" />
+                <img 
+                  src="../public/img/image.svg" 
+                  id="image-section-3" 
+                />
+                <input 
+                  type="file" 
+                  id="file" 
+                  name="productImages" 
+                  onchange="previewFileHendler(this, 3)" 
+                />
               </div>
               <div class="custom-upload-img-box">
-                <img src="../public/img/image.svg" id="image-section" />
-                <input type="file" name="productImages" onchange="previewFileHendler(this, 4)" />
+                <img 
+                  src="../public/img/image.svg" 
+                  id="image-section-4" 
+                />
+                <input 
+                  type="file" 
+                  id="file" 
+                  name="productImages" 
+                  onchange="previewFileHendler(this, 4)" 
+                />
               </div>
 
               <!-- Add more image uploaders as needed -->
@@ -151,7 +182,7 @@
         </form>
       </section>
 
-      <!-- Do not change this section -->
+      <!-- TABLE SECTION -->
       <section class="table__body">
         <table>
           <thead>
@@ -165,28 +196,27 @@
               <th> Price <span class="icon-arrow">&UpArrow;</span></th>
             </tr>
           </thead>
-          <tbody>
+          <% products.map((val, key)=> {%>
+          <tbody class="productCategory" name="productCategory">
             <tr>
-              <td> 1 </td>
-              <td> <img src="../public/img/userImages/Zinzu Chan Lee.jpg" alt=""></td>
-              <td> Lotion</td>
-              <td> Bodycare </td>
-              <td> Large </td>
+              <td><%= key +1 %></td>  <!-- Increment the number dynamically -->
+              <td><img src="${imageUrl}" alt="Product Image" width="50" height="50"/></td>
+              <td><%= val.productName %></td>
+              <td>${productCategory}</td>
+              <td>${productSize}</td>
               <td>
-                <p class="status delivered">Active</p>
+                <select
+                style="
+                cursor: pointer;"
+                class="status ${productStatus}"
+                id="<%= val._id%>";
+              >
+                <option value="ACITVE"<%= val.productStatus ==="ACITVE"?  'selected': '' %> >ACITVE</option>
+                <option value="PENDING" <%= val.productStatus ==="PENDING"?  'selected': '' %> >PENDING</option>
+                <option value="OUTOFSTOCK" <%= val.productStatus ==="OUTOFSTOCK"?  'selected': '' %>>OUTOFSTOCK</option>
+              </select>
               </td>
-              <td> <strong> $128.90 </strong></td>
-            </tr>
-            <tr>
-              <td> 2 </td>
-              <td> <img src="../public/img/userImages/Zinzu Chan Lee.jpg" alt=""></td>
-              <td> Lipstick </td>
-              <td> Skincare </td>
-              <td> Small </td>
-              <td>
-                <p class="status delivered">Active</p>
-              </td>
-              <td> <strong> $148.90 </strong></td>
+              <td><strong>$${productPrice}</strong></td>
             </tr>
           </tbody>
         </table>
@@ -196,5 +226,4 @@
   <script src="../public/js/products.js"></script>
 
 </body>
-
 </html>
